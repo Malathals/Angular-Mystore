@@ -1,0 +1,28 @@
+<div>
+  <div>
+    {{ productItem.id }}
+    <br />
+    {{ productItem.name }}
+    <br />
+    {{ productItem.url }}
+    <br />
+    {{ productItem.price }}
+    <br />
+    {{ productItem.description }}
+    <br />
+    {{ productItem.quantity }}
+    <br />
+    <select [(ngModel)]="productItem.quantity">
+      <option
+        *ngFor="let quan of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+        [value]="quan"
+      >
+        {{ quan }}
+      </option>
+    </select>
+    <br />
+    <button (click)="addItem(productItem)">Add to cart</button>
+    <br />
+  </div>
+  <br />
+</div>
