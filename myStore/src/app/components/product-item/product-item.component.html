@@ -1,10 +1,10 @@
-<div>
-  <div>
+<div class="product-container">
+  <div class="">
     {{ productItem.id }}
     <br />
     {{ productItem.name }}
     <br />
-    {{ productItem.url }}
+    <img class="product-image" [src]="productItem.url" />
     <br />
     {{ productItem.price }}
     <br />
@@ -12,7 +12,7 @@
     <br />
     {{ productItem.quantity }}
     <br />
-    <select [(ngModel)]="productItem.quantity">
+    <select [(ngModel)]="productItem.quantity" class="select-input">
       <option
         *ngFor="let quan of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
         [value]="quan"

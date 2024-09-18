@@ -10,7 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ConformationComponent } from './components/conformation/conformation.component';
 import { HeaderComponent } from './header/header/header.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';  
+
 
 @NgModule({
   declarations: [
@@ -26,10 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
   ],
   providers: [
     provideClientHydration()
+    
   ],
   bootstrap: [AppComponent]
 })

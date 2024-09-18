@@ -25,7 +25,8 @@ export class ProductItemComponent implements OnInit {
 
   addItem(items: Product)
   {
-    items.quantity++
-    return items
+    items.quantity+=1
+    console.log("hi")
   }
+
 }
