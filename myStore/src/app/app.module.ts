@@ -10,7 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ConformationComponent } from './components/conformation/conformation.component';
 import { HeaderComponent } from './header/header/header.component';
 import { FormsModule } from '@angular/forms';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';  // Use `provideHttpClient`
 
 @NgModule({
   declarations: [
@@ -28,8 +28,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   providers: [
-    provideClientHydration()
-    
+    provideHttpClient(withFetch())  
   ],
   bootstrap: [AppComponent]
 })

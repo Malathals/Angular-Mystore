@@ -1,11 +1,14 @@
-<div class="product-container">
+<div class=>
   <div class="">
-    {{ productItem.id }}
     <br />
-    {{ productItem.name }}
-    <br />
+    <div (click)="viewDetails(productItem)">
+       
     <img class="product-image" [src]="productItem.url" />
     <br />
+  </div>
+    {{ productItem.name }}
+    <br />
+
     {{ productItem.price }}
     <br />
     {{ productItem.description }}
@@ -21,7 +24,7 @@
       </option>
     </select>
     <br />
-    <button (click)="addItem(productItem)">Add to cart</button>
+    <button (click)="addToCart(productItem)">Add to cart</button>
     <br />
   </div>
   <br />

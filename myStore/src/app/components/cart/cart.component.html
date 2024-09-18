@@ -1,1 +1,92 @@
-<p>cart works!</p>
+<h2>Your Cart</h2>
+
+<div *ngIf="selctedProducts.length === 0">No items in cart.</div>
+
+<div *ngFor="let item of selctedProducts">
+  <div>
+    <h3>{{ item.name }}</h3>
+    <img [src]="item.url" alt="{{ item.name }}" />
+    <p>Price: {{ item.price }}</p>
+    <select [(ngModel)]="item.quantity" class="select-input">
+      <option
+        *ngFor="let quan of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+        [value]="quan"
+      >
+        {{ quan }}
+      </option>
+    </select>
+  </div>
+  <hr />
+</div>
+<h3>the total price: {{ totalPrice }}</h3>
+
+<div>
+  <form
+    #form="ngForm"
+    *ngIf="selctedProducts.length != 0"
+    (ngSubmit)="submitForm()"
+  >
+    <h1>payment info</h1>
+
+    <label for="fullName">full name</label>
+
+    <input
+      type="text"
+      name="fullName"
+      required
+      minlength="3"
+      maxlength="15"
+      [(ngModel)]="fullName"
+      placeholder="Enter yor name"
+      #fullNameInput="ngModel"
+    />
+    <div *ngIf="fullNameInput.invalid"></div>
+    <small *ngIf="fullNameInput.errors?.['required']" class="text-danger"
+      >Full name is required.</small
+    >
+
+    <br />
+    <label for="adress12">adress</label>
+
+    <input
+      type="text"
+      name="address12"
+      required
+      minlength="3"
+      maxlength="20"
+      [(ngModel)]="address"
+      placeholder="Enter yor address"
+      #address12="ngModel"
+    />
+
+    <div *ngIf="address12.invalid"></div>
+    <small *ngIf="address12.errors?.['required']" class="text-danger"
+      >Address is required.</small
+    >
+
+    <br />
+    <label for="card">card</label>
+
+    <input
+    type="text"
+    name="card12"
+    required
+    maxlength="12"
+    [(ngModel)]="card"
+    placeholder="Enter yor card"
+    #cardInput="ngModel"
+  />
+    <div *ngIf="cardInput.invalid"></div>
+    <small *ngIf="cardInput.errors?.['required']" class="text-danger"
+      >card is required.</small
+    >
+
+    <br />
+    <input
+      type="submit"
+      [disabled]="form.invalid"
+      value="Submit"
+      class="btn btn-primary"
+    />
+  </form>
+</div>
