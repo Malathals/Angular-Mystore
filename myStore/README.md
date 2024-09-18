@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+This application provides users with a seamless shopping experience by offering a list of products to browse, add to the cart, and purchase. It includes various features such as product browsing, viewing product details, adding items to the cart, and proceeding with payment.
+
+Key Features:
+
+    Browse Products: Users can view a wide range of products available in the store.
+    View Product Details: Users can click on any product to see detailed information, including images, descriptions, and price.
+    Add to Cart: Users can add products to their cart and adjust quantities before proceeding to checkout.
+    Cart Management: The cart page shows all selected products, their quantities, and the total price.
+    Payment: After adding products to the cart, users can proceed to the payment page, where they provide their personal and payment information.
+    Order Confirmation: Upon successful checkout, the user is presented with an order confirmation screen displaying their total price and a thank-you message.
