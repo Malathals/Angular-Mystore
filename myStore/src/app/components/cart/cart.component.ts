@@ -21,6 +21,13 @@ export class CartComponent implements OnInit {
     this.selctedProducts = this.cartService.getCartItems();
     console.log('Cart items on Cart page:', this.selctedProducts);
     this.totalPrice = this.cartService.getTotalPrice();
+
+  }
+
+ 
+  loadCartProducts() {
+    this.selctedProducts = this.cartService.getCartItems();
+    this.totalPrice = this.cartService.getTotalPrice();
   }
 
   submitForm() {

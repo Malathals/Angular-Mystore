@@ -26,7 +26,7 @@ export class ProductItemDetailsComponent implements OnInit {
         name: '',
         description: '',
         price: 0,
-        quantity: 1,
+        quantity: 0,
       });
   }
 
@@ -43,9 +43,9 @@ export class ProductItemDetailsComponent implements OnInit {
     });
   }
 
-  addToCart(selectedProduct: Product) {
-    this.cartService.addToCart(selectedProduct);
-    alert(" the product had been added successfully")
+addToCart() {
+  this.cartService.addToCart({...this.product, quantity: this.product.quantity});
+  alert("Product added successfully");
+}
 
-  }
 }

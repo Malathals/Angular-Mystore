@@ -11,11 +11,10 @@ export class CartService {
 
   addToCart(product: Product): void {
     const existingProduct = this.cart.find((p) => p.id === product.id);
-
     if (existingProduct) {
-      existingProduct.quantity += product.quantity; // Add the new quantity
+      existingProduct.quantity = +existingProduct.quantity + +product.quantity;
     } else {
-      this.cart.push({ ...product });
+      this.cart.push({ ...product, quantity: +product.quantity });
     }
   }
 
@@ -33,16 +32,6 @@ export class CartService {
       totalPrice += this.cart[index].price * (this.cart[index].quantity || 1);
     }
 
-    
-
     return totalPrice;
   }
-
-  updateProductQuantity(productId: number, newQuantity: number): void {
-    const index = this.cart.findIndex(p => p.id === productId);
-    if (index !== -1) {
-      this.cart[index].quantity = newQuantity;
-    }
-  }
-  
 }
