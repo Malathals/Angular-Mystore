@@ -18,7 +18,6 @@ export class CartService {
       this.cart.push({ ...product });
     }
 
-    alert(" the product had been added successfully")
   }
 
   getCartItems(): Product[] {
@@ -33,8 +32,11 @@ export class CartService {
     let totalPrice = 0;
     for (let index = 0; index < this.cart.length; index++) {
       totalPrice += this.cart[index].price * (this.cart[index].quantity || 1);
+      
     }
+    
 
     return totalPrice;
   }
+ 
 }

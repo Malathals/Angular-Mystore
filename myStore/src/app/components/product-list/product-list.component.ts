@@ -29,5 +29,7 @@ export class ProductListComponent {
   }
   addedProduct(event: Product) {
     this.cartService.addToCart(event);
+    alert(" the product had been added successfully")
+
   }
 }

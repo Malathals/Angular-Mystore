@@ -26,7 +26,7 @@ export class ProductItemDetailsComponent implements OnInit {
         name: '',
         description: '',
         price: 0,
-        quantity: 0,
+        quantity: 1,
       });
   }
 
@@ -36,6 +36,7 @@ export class ProductItemDetailsComponent implements OnInit {
       const filteredProducts = res.filter((p) => p.id === this.productId);
 
       this.product = filteredProducts[0];
+      this.product.quantity = this.product.quantity || 1;
       if (!this.product) {
         console.error('Product not found');
       }
