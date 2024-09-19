@@ -7,7 +7,7 @@
     <h3>{{ item.name }}</h3>
     <img [src]="item.url" alt="{{ item.name }}" />
     <p>Price: {{ item.price }}</p>
-    <select [(ngModel)]="item.quantity" class="select-input">
+    <select [(ngModel)]="item.quantity" (ngModelChange)="onQuantityChange(item)"  class="select-input">
       <option
         *ngFor="let quan of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
         [value]="quan"
@@ -15,21 +15,17 @@
         {{ quan }}
       </option>
     </select>
+    <button (click)="delete(item)"> delete the item</button>
   </div>
   <hr />
 </div>
 <h3>the total price: {{ totalPrice }}</h3>
 
 <div>
-  <form
-    #form="ngForm"
-    *ngIf="selctedProducts.length != 0"
-    (ngSubmit)="submitForm()"
-  >
-    <h1>payment info</h1>
+  <form #form="ngForm" *ngIf="selctedProducts.length != 0" (ngSubmit)="submitForm()">
+    <h1>Payment Info</h1>
 
-    <label for="fullName">full name</label>
-
+    <label for="fullName">Full Name</label>
     <input
       type="text"
       name="fullName"
@@ -37,56 +33,57 @@
       minlength="3"
       maxlength="15"
       [(ngModel)]="fullName"
-      placeholder="Enter yor name"
+      placeholder="Enter your name"
       #fullNameInput="ngModel"
+      class="form-control"
     />
-    <div *ngIf="fullNameInput.invalid"></div>
-    <small *ngIf="fullNameInput.errors?.['required']" class="text-danger"
-      >Full name is required.</small
-    >
+    <div *ngIf="fullNameInput.invalid && fullNameInput.touched">
+      <small *ngIf="fullNameInput.errors?.['required']" class="text-danger">Full name is required.</small>
+      <small *ngIf="fullNameInput.errors?.['minlength']" class="text-danger">Full name must be at least 3 characters.</small>
+      <small *ngIf="fullNameInput.errors?.['maxlength']" class="text-danger">Full name cannot exceed 15 characters.</small>
+    </div>
 
     <br />
-    <label for="adress12">adress</label>
 
+    <label for="address">Address</label>
     <input
       type="text"
-      name="address12"
+      name="address"
       required
       minlength="3"
       maxlength="20"
       [(ngModel)]="address"
-      placeholder="Enter yor address"
-      #address12="ngModel"
+      placeholder="Enter your address"
+      #addressInput="ngModel"
+      class="form-control"
     />
-
-    <div *ngIf="address12.invalid"></div>
-    <small *ngIf="address12.errors?.['required']" class="text-danger"
-      >Address is required.</small
-    >
+    <div *ngIf="addressInput.invalid && addressInput.touched">
+      <small *ngIf="addressInput.errors?.['required']" class="text-danger">Address is required.</small>
+      <small *ngIf="addressInput.errors?.['minlength']" class="text-danger">Address must be at least 3 characters.</small>
+      <small *ngIf="addressInput.errors?.['maxlength']" class="text-danger">Address cannot exceed 20 characters.</small>
+    </div>
 
     <br />
-    <label for="card">card</label>
 
+    <label for="card">Credit Card</label>
     <input
-    type="text"
-    name="card12"
-    required
-    maxlength="12"
-    [(ngModel)]="card"
-    placeholder="Enter yor card"
-    #cardInput="ngModel"
-  />
-    <div *ngIf="cardInput.invalid"></div>
-    <small *ngIf="cardInput.errors?.['required']" class="text-danger"
-      >card is required.</small
-    >
+      type="text"
+      name="card"
+      required
+      maxlength="12"
+      pattern="^[0-9]{12}$"
+      [(ngModel)]="card"
+      placeholder="Enter your card number"
+      #cardInput="ngModel"
+      class="form-control"
+    />
+    <div *ngIf="cardInput.invalid && cardInput.touched">
+      <small *ngIf="cardInput.errors?.['required']" class="text-danger">Card number is required.</small>
+      <small *ngIf="cardInput.errors?.['pattern']" class="text-danger">Card number must be 12 digits and contain only numbers.</small>
+    </div>
 
     <br />
-    <input
-      type="submit"
-      [disabled]="form.invalid"
-      value="Submit"
-      class="btn btn-primary"
-    />
+
+    <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary" />
   </form>
 </div>

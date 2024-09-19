@@ -10,12 +10,23 @@ export class CartService {
   constructor() {}
 
   addToCart(product: Product): void {
-    this.cart.push({ ...product });
-    console.log('Product added to cart:', this.cart); 
+    const existingProduct = this.cart.find((p) => p.id === product.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += product.quantity; // Add the new quantity
+    } else {
+      this.cart.push({ ...product });
+    }
+
+    alert(" the product had been added successfully")
   }
 
   getCartItems(): Product[] {
     return this.cart;
+  }
+
+  deleteProduct(product: Product): void {
+    this.cart = this.cart.filter(p => p.id !== product.id);
   }
 
   getTotalPrice(): number {

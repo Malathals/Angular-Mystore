@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../models/dataType';
 import { CartService } from '../../service/cart-item.service';
 import { ConformationComponent } from '../conformation/conformation.component';
@@ -16,10 +16,7 @@ export class CartComponent implements OnInit {
   address: string = '';
   card: number = 0;
 
-  constructor(
-    private cartService: CartService,
-    private router: Router
-  ) {}
+  constructor(private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
     this.selctedProducts = this.cartService.getCartItems();
     console.log('Cart items on Cart page:', this.selctedProducts);
@@ -27,15 +24,21 @@ export class CartComponent implements OnInit {
   }
 
   submitForm() {
-
-    this.router.navigate(['/message'], 
-      {
-    queryParams: {
+    this.router.navigate(['/message'], {
+      queryParams: {
         fullName: this.fullName,
         totalPrice: this.totalPrice,
       },
-    })
+    });
   }
-
-    
+  delete(selctedProduct: Product): void {
+    this.cartService.deleteProduct(selctedProduct);
+    this.selctedProducts = this.cartService.getCartItems();
+    this.totalPrice = this.cartService.getTotalPrice();
+    alert('this item has been deleted successfully');
   }
+  onQuantityChange(item: Product): void {
+    this.cartService.addToCart(item);
+    this.totalPrice = this.cartService.getTotalPrice(); 
+  }
+}

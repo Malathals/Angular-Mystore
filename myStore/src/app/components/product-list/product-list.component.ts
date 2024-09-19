@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/dataType';
 import { ProductsService } from '../../service/products.service';
+import { CartService } from '../../service/cart-item.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,7 @@ export class ProductListComponent {
   ProductList: Product[] = [];
   errorMessage: string = '';
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService, private cartService: CartService) {}
 
   ngOnInit() {
     this.productService.getProduct().subscribe(
@@ -25,5 +26,8 @@ export class ProductListComponent {
         console.log(this.ProductList[5].quantity)
       })
 
+  }
+  addedProduct(event: Product) {
+    this.cartService.addToCart(event);
   }
 }

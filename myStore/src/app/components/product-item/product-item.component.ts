@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Product } from '../../models/dataType';
 import { Router } from '@angular/router';
 import { CartService } from '../../service/cart-item.service';
+
 
 @Component({
   selector: 'app-product-item',
@@ -10,6 +11,7 @@ import { CartService } from '../../service/cart-item.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() productItem: Product;
+  @Output() addedProduct: EventEmitter<Product> = new EventEmitter();
 
   constructor(private router: Router, private cartService: CartService) {
     this.productItem = {
@@ -32,7 +34,8 @@ export class ProductItemComponent implements OnInit {
   viewDetails(product: Product) {
     this.router.navigate(['/product', product.id]);
   }
-  addToCart(selectedProduct: Product) {
-    this.cartService.addToCart(selectedProduct);
+
+  addItemToCart() {
+    this.addedProduct.emit(this.productItem);
   }
 }
