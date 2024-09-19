@@ -37,8 +37,15 @@ export class CartComponent implements OnInit {
     this.totalPrice = this.cartService.getTotalPrice();
     alert('this item has been deleted successfully');
   }
-  onQuantityChange(item: Product): void {
-    this.cartService.addToCart(item);
-    this.totalPrice = this.cartService.getTotalPrice(); 
+  onQuantityChange(item: Product, newQuantity: number): void {
+    const productInCart = this.cartService
+      .getCartItems()
+      .find((p) => p.id === item.id);
+
+    if (productInCart) {
+      productInCart.quantity = newQuantity;
+    }
+
+    this.totalPrice = this.cartService.getTotalPrice();
   }
 }

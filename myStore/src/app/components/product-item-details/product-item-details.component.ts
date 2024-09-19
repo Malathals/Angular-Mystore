@@ -45,5 +45,7 @@ export class ProductItemDetailsComponent implements OnInit {
 
   addToCart(selectedProduct: Product) {
     this.cartService.addToCart(selectedProduct);
+    alert(" the product had been added successfully")
+
   }
 }
